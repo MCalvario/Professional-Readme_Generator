@@ -5,8 +5,7 @@ const path = require('path');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
-inquirer
-  .prompt([
+const questions = [
     {
         type: "input", 
         message: "What is the title of your project?",
@@ -15,12 +14,12 @@ inquirer
     {
         type: "input",
         message: "Why did you build this project?",
-        name: "Reason",
+        name: "function",
     },
     {
         type: "input",
         message: "What problem does it solve?",
-        name: "problem-solving",
+        name: "description",
     },
     {
         type: "input",
@@ -43,7 +42,7 @@ inquirer
         message: "What is your github username?",
         name: "name",
     }
-  ]);
+  ];
 
 
 // TODO: Create a function to write README file
@@ -54,7 +53,7 @@ return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 function init() {
 inquirer.prompt(questions).then((data) => {
     console.log("creating professional readme.md file");
-    writeToFile("./README.md", generateMarkdown({data}));
+    writeToFile("README.md", generateMarkdown({data}));
 });
 }
 
